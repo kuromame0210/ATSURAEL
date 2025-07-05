@@ -1,0 +1,514 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #ffffff;
+    color: #1f2937;
+    font-family: var(--font-noto-sans-jp), sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+    padding-top: 5rem;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-noto-serif-jp), serif;
+  }
+
+  /* デフォルトのフォーカスアウトラインを無効化 */
+  a, button, input, textarea, select {
+    outline: none;
+  }
+
+  /* タップハイライトを無効化（モバイル） */
+  a, button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
+
+/* 高級感のあるスクロールバー */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f8f8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b8860b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #966f0a;
+}
+
+/* レスポンシブテーブル専用の細いスクロールバー */
+.responsive-table::-webkit-scrollbar {
+  height: 4px;
+}
+
+.responsive-table::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+}
+
+.responsive-table::-webkit-scrollbar-thumb {
+  background: rgba(184, 134, 11, 0.6);
+  border-radius: 2px;
+}
+
+.responsive-table::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 111, 10, 0.8);
+}
+
+/* フォーカス状態の改善 */
+*:focus {
+  outline: none;
+}
+
+/* タッチ操作の改善 */
+button, a, input, select, textarea {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* 価格表示用スタイル */
+.price-display {
+  font-family: var(--font-roboto-mono);
+  font-weight: 600;
+}
+
+/* アニメーション - 軽量版 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+  }
+}
+
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.animate-fade-in-scale {
+  animation: fadeInScale 0.5s ease-out;
+}
+
+.animate-slideInFromLeft {
+  animation: slideInFromLeft 0.4s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+
+/* 遅延アニメーション */
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-500 {
+  animation-delay: 0.5s;
+}
+
+.animate-delay-600 {
+  animation-delay: 0.6s;
+}
+
+.animate-delay-700 {
+  animation-delay: 0.7s;
+}
+
+.animate-delay-800 {
+  animation-delay: 0.8s;
+}
+
+/* スクロール時のアニメーション用 */
+.opacity-0 {
+  opacity: 0;
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 高級感のあるボタンエフェクト */
+.luxury-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+}
+
+.luxury-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(4, 120, 87, 0.3);
+}
+
+.luxury-button:active {
+  transform: translateY(0);
+}
+
+/* ===== モバイル最適化 ===== */
+
+/* モバイルでのタッチ操作最適化 */
+@media (max-width: 768px) {
+  /* より大きなタッチターゲット */
+  button, a, input, select, textarea {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  /* モバイルでの余白調整 */
+  .mobile-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* モバイルでの文字サイズ調整 */
+  .mobile-text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  
+  /* モバイルでのスクロール最適化 */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* モバイルでのホバーエフェクト無効化 */
+  .luxury-button:hover {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  
+  /* モバイルでのフォーカス改善 */
+  input:focus, textarea:focus, select:focus {
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+  }
+}
+
+/* スマートフォン縦向き専用 */
+@media (max-width: 480px) {
+  /* セミオーダーページのレイアウト調整 */
+  .semi-order-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* 価格表示の調整 */
+  .price-display {
+    font-size: 1.25rem;
+  }
+  
+  /* フォームの調整 */
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  /* テーブルのレスポンシブ */
+  .responsive-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .responsive-table table {
+    min-width: 600px;
+  }
+}
+
+/* タブレット向け調整 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* セミオーダーページの3カラム→2カラム */
+  .semi-order-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  /* フォームレイアウトの調整 */
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 横向きスマートフォン対応 */
+@media (max-height: 500px) and (orientation: landscape) {
+  /* ヘッダーの高さ調整 */
+  header {
+    height: 3rem;
+  }
+  
+  /* モーダルの調整 */
+  .modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+/* 高解像度ディスプレイ対応 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* アイコンや細かい要素の調整 */
+  .icon-small {
+    transform: scale(1.1);
+  }
+}
+
+/* モバイルでのスティッキー要素調整 */
+@media (max-width: 768px) {
+  .sticky-mobile {
+    position: sticky;
+    top: 4rem;
+    z-index: 10;
+  }
+}
+
+/* アクセシビリティ向上 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .luxury-button {
+    transition: none;
+  }
+  
+  .animate-fade-in-up {
+    animation: none;
+  }
+}
+
+/* 高コントラストモード対応 */
+@media (prefers-contrast: high) {
+  /* These CSS custom properties will override the Tailwind theme colors */
+  :root {
+    --tw-color-primary-dark: #000000;
+    --tw-color-text-primary: #000000;
+    --tw-color-text-secondary: #333333;
+    --tw-color-accent-gold: #8B4513;
+  }
+  
+  button, a {
+    border: 2px solid currentColor;
+  }
+}
+
+/* ダークモード準備（将来対応用） */
+@media (prefers-color-scheme: dark) {
+  /* 現在はダークモード非対応だが、将来の拡張用 */
+  /* :root {
+    --background: #0a0a0a;
+    --text-primary: #ffffff;
+  } */
+}
+
+/* 文字サイズと行間の調整 */
+@layer base {
+  /* より濃い文字色 */
+  .text-gray-600 {
+    color: #4b5563;
+  }
+  
+  .text-gray-700 {
+    color: #374151;
+  }
+  
+  /* コンパクトな行間設定 */
+  .leading-relaxed {
+    line-height: 1.5;
+  }
+  
+  .leading-loose {
+    line-height: 1.6;
+  }
+  
+  /* 文字サイズの調整 */
+  p, div, span {
+    line-height: 1.5;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3;
+  }
+}
+
+/* ===== モバイル最適化ユーティリティクラス ===== */
+@layer utilities {
+  .mobile-padding {
+    @apply px-4 py-4 sm:px-6 sm:py-6;
+  }
+
+  .mobile-text-lg {
+    @apply text-sm sm:text-base;
+  }
+
+  .mobile-text-xl {
+    @apply text-base sm:text-lg;
+  }
+
+  .mobile-text-2xl {
+    @apply text-lg sm:text-xl;
+  }
+
+  .mobile-text-3xl {
+    @apply text-xl sm:text-2xl;
+  }
+
+  .sticky-mobile {
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 10;
+  }
+
+  .button-grid {
+    @apply grid gap-3 sm:gap-4;
+  }
+
+  .button-grid-1 {
+    @apply grid-cols-1;
+  }
+
+  .button-grid-2 {
+    @apply grid-cols-1 sm:grid-cols-2;
+  }
+
+  .button-grid-3 {
+    @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-3;
+  }
+
+  .touch-target {
+    @apply min-h-[44px] touch-manipulation;
+  }
+
+  .touch-target-lg {
+    @apply min-h-[48px] touch-manipulation;
+  }
+
+  .responsive-table {
+    @apply overflow-x-auto;
+  }
+
+  .responsive-table table {
+    @apply w-full min-w-[600px];
+  }
+
+  /* カスタムフォーカススタイル */
+  .focus-green {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 focus:ring-opacity-50;
+  }
+
+  .focus-green-no-offset {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-opacity-50;
+  }
+}
+
