@@ -4,6 +4,7 @@ import React from 'react'
 import { STONE_SETTINGS } from '@/lib/data'
 import { useOrderStore } from '@/store/useOrderStore'
 import { cn } from '@/lib/utils'
+import { StoneSetting } from '@/types'
 
 const StoneSettingSelector: React.FC = () => {
   const { selections, updateStoneSetting } = useOrderStore()
@@ -26,7 +27,7 @@ const StoneSettingSelector: React.FC = () => {
         {STONE_SETTINGS.map((setting) => (
           <button
             key={setting.id}
-            onClick={() => updateStoneSetting(setting.id)}
+            onClick={() => updateStoneSetting(setting.id as StoneSetting)}
             disabled={selections.gemstone === 'none'}
             className={cn(
               'min-h-[44px] p-3 sm:p-4 rounded-lg border-2 text-left transition-all touch-manipulation',
