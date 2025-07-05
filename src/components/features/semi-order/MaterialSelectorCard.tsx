@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { MATERIALS } from '@/lib/data'
 import { useOrderStore } from '@/store/useOrderStore'
 import { cn } from '@/lib/utils'
+import { MaterialInfo } from '@/types'
 
 const MaterialSelectorCard: React.FC = () => {
   const { selections, updateMaterial } = useOrderStore()
@@ -28,7 +29,7 @@ const MaterialSelectorCard: React.FC = () => {
     premium: MATERIALS.filter(m => m.basePrice === 'TBD' || m.basePrice === 'CONTACT')
   }
 
-  const renderMaterialCard = (material: any, isSelected: boolean) => (
+  const renderMaterialCard = (material: MaterialInfo, isSelected: boolean) => (
     <div
       key={material.id}
       onClick={() => material.available && updateMaterial(material.id)}

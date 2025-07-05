@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { StepContainer } from './StepContainer'
 import { MaterialSelector } from './MaterialSelector'
 import { ShapeSelector } from './ShapeSelector'
@@ -12,10 +12,10 @@ import { EngravingSelector } from './EngravingSelector'
 import { useOrderStore } from '@/store/useOrderStore'
 
 const SteppedSelectors: React.FC = () => {
-  const { stepProgress, setCurrentStep, completeStep, validateStep } = useOrderStore()
+  const { stepProgress, completeStep, validateStep } = useOrderStore()
 
   // ステップ定義
-  const steps = [
+  const steps = useMemo(() => [
     {
       id: 'basic',
       title: '基本設定',
@@ -34,7 +34,7 @@ const SteppedSelectors: React.FC = () => {
       description: '刻印などの最終仕上げオプションです（オプション）',
       required: false
     }
-  ]
+  ], [])
 
   // 自動バリデーション
   useEffect(() => {
@@ -43,7 +43,7 @@ const SteppedSelectors: React.FC = () => {
         completeStep(step.id)
       }
     })
-  }, [validateStep, completeStep, stepProgress.completedSteps])
+  }, [validateStep, completeStep, stepProgress.completedSteps, steps])
 
   const handleStepComplete = (stepId: string) => {
     if (validateStep(stepId)) {

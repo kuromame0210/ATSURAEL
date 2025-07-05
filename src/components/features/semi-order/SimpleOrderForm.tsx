@@ -3,7 +3,7 @@
 import React from 'react'
 import { MATERIALS, SHAPES, GEMSTONES, RING_SIZES } from '@/lib/data'
 import { useOrderStore } from '@/store/useOrderStore'
-import { cn } from '@/lib/utils'
+import { Material, Shape, Gemstone } from '@/types'
 
 const SimpleOrderForm: React.FC = () => {
   const { selections, updateMaterial, updateShape, updateSize, updateGemstone, updateEngraving, priceInfo } = useOrderStore()
@@ -46,7 +46,7 @@ const SimpleOrderForm: React.FC = () => {
             <h3 className="text-sm font-medium text-gray-700 mb-2">素材</h3>
             <select
               value={selections.material || ''}
-              onChange={(e) => updateMaterial(e.target.value)}
+              onChange={(e) => updateMaterial(e.target.value as Material)}
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-gold focus:border-accent-gold"
             >
               <option value="">素材を選択</option>
@@ -73,7 +73,7 @@ const SimpleOrderForm: React.FC = () => {
             <h3 className="text-sm font-medium text-gray-700 mb-2">形状</h3>
             <select
               value={selections.shape || ''}
-              onChange={(e) => updateShape(e.target.value)}
+              onChange={(e) => updateShape(e.target.value as Shape)}
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-gold focus:border-accent-gold"
             >
               <option value="">形状を選択</option>
@@ -115,7 +115,7 @@ const SimpleOrderForm: React.FC = () => {
               <label className="text-sm text-gray-600 mb-2 block">宝石（誕生石）</label>
               <select
                 value={selections.gemstone || 'none'}
-                onChange={(e) => updateGemstone(e.target.value)}
+                onChange={(e) => updateGemstone(e.target.value as Gemstone)}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-gold focus:border-accent-gold"
               >
                 {GEMSTONES.map((gemstone) => (

@@ -54,7 +54,6 @@ const StepContainer: React.FC<StepContainerProps> = ({
   }
 
   const currentStepIndex = steps.findIndex(step => step.id === currentStep)
-  const currentStepData = steps[currentStepIndex]
 
   return (
     <div className="space-y-4">

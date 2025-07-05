@@ -4,6 +4,7 @@ import React from 'react'
 import { MATERIALS } from '@/lib/data'
 import { useOrderStore } from '@/store/useOrderStore'
 import { cn } from '@/lib/utils'
+import { Material } from '@/types'
 
 const MaterialSelectorDropdown: React.FC = () => {
   const { selections, updateMaterial } = useOrderStore()
@@ -24,7 +25,7 @@ const MaterialSelectorDropdown: React.FC = () => {
       <div className="relative">
         <select
           value={selections.material || ''}
-          onChange={(e) => updateMaterial(e.target.value)}
+          onChange={(e) => updateMaterial(e.target.value as Material)}
           className={cn(
             'w-full p-3 md:p-4 rounded-lg border-2 bg-white text-left transition-all',
             'hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent-gold',
